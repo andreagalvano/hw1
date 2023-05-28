@@ -8,7 +8,6 @@ function Logout(event){
 }
 function Apri_Artista(event){
   const artista=event.currentTarget.textContent.replace("#","");
-  console.log(artista);
   window.open("Artista.php?nome_artista="+encodeURI(artista),"_self");
 }
 function Login(event){
@@ -27,8 +26,7 @@ if(document.body.contains(document.querySelector("#userbtn"))){
     const queryString = window.location.search; //ottengo l'url della pagina
     const urlParams = new URLSearchParams(queryString); //ottengo tutti i parametri
     Argomento=urlParams.get('argomento');
-    console.log(Argomento);
-    fetch("http://localhost/homework1/Database_Requests.php?richiesta=get_argoments").then(onResponse).then(onJson);
+    fetch("Database_Requests.php?richiesta=get_argoments").then(onResponse).then(onJson);
 }
 if(document.body.contains(document.querySelector("#logoutbtn"))){
   const logoutbtn= document.querySelector('#logoutbtn');
@@ -52,7 +50,6 @@ function onResponse(response){
     return response.json();
 }
 function onJson(json){
-    console.log(json);
     let numero=0;
     if(Argomento!==null){
 
@@ -134,7 +131,7 @@ function onJson(json){
             container.appendChild(messaggio);
             document.querySelector('.ParentContainer').appendChild(container);
         }else{
-          fetch("http://localhost/homework1/Database_Requests.php?richiesta=get_likes").then(onResponseLikes).then(onJsonLikes);
+          fetch("Database_Requests.php?richiesta=get_likes").then(onResponseLikes).then(onJsonLikes);
         }
     }
 }
@@ -144,7 +141,6 @@ function onResponseLikes(response){
 }
 
 function onJsonLikes(json){
-    console.log(json);
     if(json.length===0){
       const argomenti=document.querySelectorAll('.Argomento');
       for(let argomento of argomenti){
@@ -170,7 +166,7 @@ function onJsonLikes(json){
             const fdata=new FormData();
             fdata.append('id_arg',i.ID_argomento);
             const form_data={method:'Post',body: fdata};
-            fetch("http://localhost/homework1/Database_Requests.php?richiesta=num_like",form_data).then(onResponsenLike).then(onJsonnLike);
+            fetch("Database_Requests.php?richiesta=num_like",form_data).then(onResponsenLike).then(onJsonnLike);
           }
         }
         if(Arg_Like.id!=="Checked"){
@@ -189,9 +185,7 @@ function onJsonLikes(json){
     return response.json();
   }
   function onJsonnLike(json){
-    const ListaArgomenti=document.querySelectorAll('.Argomento');
-    console.log(json);
-  
+    const ListaArgomenti=document.querySelectorAll('.Argomento');  
     for(argomento of ListaArgomenti){
       const Arg_nLike=argomento.querySelector('.nLike')
         if(json.ID_argomento===argomento.id){
@@ -207,7 +201,7 @@ function onJsonLikes(json){
       const fdata=new FormData();
       fdata.append('id_like',event.currentTarget.dataset.likeid);
       const form_data={method:'Post',body: fdata};
-      fetch("http://localhost/homework1/Database_Requests.php?richiesta=remove_like",form_data).then(onResponseR_Like).then(onJsonR_Like);
+      fetch("Database_Requests.php?richiesta=remove_like",form_data).then(onResponseR_Like).then(onJsonR_Like);
       const BtnContainer=event.currentTarget.parentNode;
       const nLike=BtnContainer.querySelector('.nLike');
       nLike.textContent=parseInt(nLike.textContent)-1;
@@ -217,11 +211,10 @@ function onJsonLikes(json){
       event.currentTarget.src="Images/Heart_Filled.png";
       const fdata=new FormData();
       fdata.append('username',Username);
-      console.log(Username);
       const Argomento=event.currentTarget.parentNode.parentNode;
       fdata.append('ID_arg',Argomento.id);
       const form_data={method:'Post',body: fdata};
-      fetch("http://localhost/homework1/Database_Requests.php?richiesta=add_like",form_data).then(onResponseA_Like).then(onJsonA_Like);
+      fetch("Database_Requests.php?richiesta=add_like",form_data).then(onResponseA_Like).then(onJsonA_Like);
       const BtnContainer=event.currentTarget.parentNode;
       const nLike=BtnContainer.querySelector('.nLike');
       nLike.textContent=parseInt(nLike.textContent)+1;
@@ -232,13 +225,11 @@ function onJsonLikes(json){
     return response.json();
   }
   function onJsonR_Like(json){
-    console.log(json);
   }
   function onResponseA_Like(response){
     return response.json();
   }
   function onJsonA_Like(json){
-    console.log(json);
     const ListaArgomenti=document.querySelectorAll('.Argomento');
     for(argomento of ListaArgomenti){
       const Arg_Like=argomento.querySelector('.Like')
@@ -254,7 +245,6 @@ function onJsonLikes(json){
   }
   function Apri_Artista(event){
     const artista=event.currentTarget.textContent.replace("#","");
-    console.log(artista);
     window.open("Artista.php?nome_artista="+encodeURI(artista),"_self");
   }
   function CercaArgomento(event){
