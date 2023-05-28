@@ -372,6 +372,10 @@ if(document.body.contains(document.querySelector("#logoutbtn"))){
     const logoutbtn= document.querySelector('#logoutbtn');
     logoutbtn.addEventListener('click',Logout);
 }
+if(document.body.contains(document.querySelector("#loginbtn"))){
+    const logintbtn= document.querySelector('#loginbtn');
+    logintbtn.addEventListener('click',Login);
+}
 const homebtn= document.querySelector('#homebtn');
 const infobtn= document.querySelector('#infobtn');
 homebtn.addEventListener('click',ApriHome);
