@@ -303,6 +303,10 @@ object-fit: contain;
 }
 
 @media (max-width: 800px) {
+  
+  .Argomento{
+    width: calc(100% - 20px);
+  }
   .ArgomentInfo{
     width: calc(100% - 10px);
   }
