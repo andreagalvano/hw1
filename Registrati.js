@@ -1,7 +1,5 @@
-
 function validazione(event){
     
-    // Verifica se tutti i campi sono riempiti
     if(t_username.value.length == 0){
         t_username.placeholder="Inserisci un username!";
         t_username.classList.add('redBorder');
@@ -147,13 +145,13 @@ function onJson(json){
 function ApriLogin(event){
     window.open("login.php","_self");
 }
-// Riferimento al form
+
 const form = document.forms['registrazione'];
 const t_username =form.username;
 const t_email=form.email;
 const t_password=form.password;
 const t_rpassword=form.Rpassword;
-// Aggiungi listener
+
 form.addEventListener('submit', validazione);
 form.username.addEventListener('keyup',Username_Control);
 form.email.addEventListener('keyup',Email_Control);
@@ -170,7 +168,7 @@ form.email.addEventListener('focus',Email_Control);
 form.password.addEventListener('focus',Password_Control);
 form.Rpassword.addEventListener('focus',RPassword_Control);
 
-fetch("http://localhost/homework1/Database_Requests.php?richiesta=get_users").then(onResponse).then(onJson);
+fetch("Database_Requests.php?richiesta=get_users").then(onResponse).then(onJson);
 const lista_user=[];
 
 const Accedi =document.querySelector("#SigInbtn");
