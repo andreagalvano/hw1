@@ -1,44 +1,47 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Creato il: Mag 28, 2023 alle 12:47
--- Versione del server: 10.4.25-MariaDB
--- Versione PHP: 7.4.30
+create database homework1;
+use homework1;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+drop table if exists Utente;
+create table Utente(
+username varchar(50) primary key,
+email Varchar(100),
+usr_password Varchar(50)
+);
 
+drop table if exists Argomenti;
+create table Argomenti(
+ID_arg int primary key auto_increment,
+Titolo Varchar(100),
+Contenuto longtext,
+ID_User varchar(50) references Utente(username),
+Data_Pubblicazione varchar(50),
+Tag varchar(45)
+);
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+drop table if exists Likes;
+create table Likes(
+ID_Like int primary key auto_increment,
+ID_argomento int references Argomenti(ID_Arg),
+ID_User varchar(50) references Utente(username)
+);
 
---
--- Database: `homework1`
---
+drop table if exists commenti;
+create table Commenti(
+ID_Comm int primary key auto_increment,
+ID_argomento int references Argomenti(ID_Arg),
+ID_User varchar(50) references Utente(username),
+Commento mediumtext,
+orario varchar(50)
+);
 
--- --------------------------------------------------------
-
---
--- Struttura della tabella `argomenti`
---
-
-CREATE TABLE `argomenti` (
-  `ID_arg` int(11) NOT NULL,
-  `Titolo` varchar(100) DEFAULT NULL,
-  `Contenuto` longtext DEFAULT NULL,
-  `ID_User` varchar(50) DEFAULT NULL,
-  `Data_Pubblicazione` varchar(50) DEFAULT NULL,
-  `Tag` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `argomenti`
---
+DELIMITER $$
+CREATE TRIGGER argomenti_AFTER_DELETE AFTER DELETE ON argomenti FOR EACH ROW
+BEGIN
+Delete from likes where (ID_argomento=old.ID_arg);
+Delete from commenti where (ID_argomento=old.ID_arg);
+END
+$$
+DELIMITER ;
 
 INSERT INTO `argomenti` (`ID_arg`, `Titolo`, `Contenuto`, `ID_User`, `Data_Pubblicazione`, `Tag`) VALUES
 (34, 'Linkin Park - Hybrid Theory', 'Los Angeles, 1996.\r\nMike Shinoda, Brad Delson e Rob Bourdon, tre amici conosciutisi al liceo e accomunati da una forte passione per la musica, decidono di formare un gruppo: nascono così i SuperXero. Successivamente entrarono a far parte di quella band anche i giovani Dave Farrel e Joseph Hahn, e il monicker fu abbreviato in Xero. Mark Wakefield divenne il primo cantante della band e di lì a poco fu registrato il primo demo ufficiale eponimo, che non destò però l’interesse delle case discografiche. Con l’uscita di scena di Wakefield, che abbandonò il progetto nel 1998, fu chiamato ad entrare nella line-up Chester Bennington, cantante con già qualche esperienza musicale sulle spalle. Il nome della band fu nuovamente cambiato, ma questa volta fu scelto il nome Hybrid Theory, con cui diedero alle stampe l’EP Hybrid Theory nel 1999. Nel frattempo ci furono nuovi cambi in formazione (Kyle Christener sostituì per un periodo limitato alla chitarra Brad Delson, mentre l’ultimo arrivato, Scott Koziol, prese per poco tempo in mano il basso), e la band, dopo i primi importanti concerti in quel di Los Angeles, firmò per la Warner e cambiò definitivamente il proprio nome in Linkin Park. Nel 2000, la band ora composta da Chester Bennington, Mike Shinoda, Brad Delson, Rob Bourdon e Joseph Hahn dà vita al proprio esordio discografico, dal titolo Hybrid Theory. Il disco, prodotto da Don Gilmore (che sarà presente anche in Meteora), può vantare oltre 30 milioni di copie vendute ed un’immediata fama conquistata su larga scala. Lo stile è assolutamente originale nel suo insieme: cantato principalmente rap accostato ad una voce pulita (ma con frequente uso del growl), chitarre graffianti, e ritmi tipici delle correnti nu metal ed hip-hop; si notano sia le naturali influenze dei vari Korn, Deftones, Limp Bizkit, sia i tanti spunti di originalità propri della band losangelina. Questo debutto rappresenta, per i Linkin Park, un primo felice tentativo di unire due generi tanto diversi, avvicinando così a sé una maggiore fascia di pubblico e le buone intenzioni profuse raggiungono difatti in breve tempo il successo sperato. Non è un caso se un’intera generazione (quella dei giovani adolescenti degli anni ’90), grazie anche a quel nefasto fenomeno televisivo che tanto ha dato ma ancor più ha tolto alla musica e che risponde al nome di MTV, sono stati letteralmente travolti dallo stile e dalla musica dei Linkin Park. Per quanto sia sicuramente sbagliato associarli ad un qualsivoglia filone metal, non si può ad ogni modo negare il loro significativo impatto sulla scena rock mondiale.\r\n\r\nAd aprire il tutto ci pensa Papercut, perfetto esempio di come possano ottimamente coesistere stili tanto diversi tra loro. A partire dalle voci, dove abbiamo sia il cantato rap di Shinoda, sia la voce pulita ed incisiva di Bennington, fino alla parte strumentale con ritmi a metà tra l’hip-hop ed il metal e chitarre lasciate a svolgere la funzione di tappeto melodico insieme a strumenti elettronici come sintetizzatori e campionatori. La più breve One Step Closer prosegue su questi binari, pur avendo dalla sua una maggior carica di aggressività ben rappresentata dall’uso di voci rabbiose dai toni forti e carichi di invettiva. With You (che potrebbe essere la colonna sonora di un’intera vita per chi è cresciuto ascoltando questo disco fino allo sfinimento) presenta un’atmosfera apparentemente più calma e contenuta, evolvendosi però in una manifestazione di sentimenti comprendenti gli errori di un passato non ancora lontano ed il relativo impatto sull’animo del protagonista, espressi con fare quasi rassegnato (ma non privo di una flebile dose di speranza) dai due singer statunitensi. Tornano prepotentemente a farsi sentire i toni dell’invettiva con Points Of Authority, che vede quindi nuovamente protagoniste le voci aggressive e piene di rabbia, qui sorrette da una base elettronica che è tra le più evidenti del disco. Atmosfere nettamente più delicate ed emozionali caratterizzano la successiva Crawling, che rappresenta uno tra gli episodi migliori del platter, anche se bisogna sottolineare il modo in cui i Linkin Park trasmettono a noi queste emozioni. Il gruppo, non spinge sul piano melodico per mezzo degli strumenti, ma piuttosto puntando sulle grandiose potenzialità di Bennington, bravo soprattutto nel calibrare emozioni di dolore, di disagio ed all’occorrenza anche di rabbia repressa. Si arriva così alla metà di Hybrid Theory, dove troviamo la bella Runaway, che non si pone sul buon livello delle precedenti, ma risulta comunque accettabile e gradita ad ogni nuovo ascolto. Qui le tematiche riguardano la fuga dalle menzogne e la conseguente ricerca della verità, un sentimento di rabbia col retrogusto di rivincita. Non importa nei confronti di chi, l’importante è che la rivincita venga messa in atto. Proseguendo su questa linea, dubbi e domande esistenziali correlate a sentimenti di sofferenza privi di ogni speranza, costituiscono il nucleo tematico di By Myself, canzone tra le più cattive del lotto che non si fa però mancare alcuni momenti riflessivi, espressi da una base musicale delicata quanto basta per non perdere nulla in quanto a potenza ed aggressività. Ed eccoci arrivati alla domanda che molti di voi, negli anni, vi sarete posti: In The End è solo un successo commerciale come tanti altri, o si tratta anche -e soprattutto- di un capolavoro? Dal mio punto di vista, In The End è da considerare un vero e proprio capolavoro. Vuoi per quel piano iniziale, vuoi per quella delicatezza che non ti aspetti da una band di questo tipo, vuoi per quelle due voci così perfette insieme (una senza l’altra non sarebbe la stessa cosa), insomma, per un motivo o per l’altro, alla fine il risultato è uno solo: capolavoro. Che piaccia o no. Abbandoniamo tutto ciò e torniamo al nostro rap metal di partenza. A Place For My Head ricade pienamente in questa strana definizione di genere, in quanto il cantato rappato di Shinoda sembra proprio andare a braccetto con la potenza tipica del mondo metallico, con un’interpretazione sincera e sentita. Tralascio volontariamente il racconto dei testi in questione poiché poco o nulla si discostano dalle tematiche affrontate in precedenza, che vanno dalla paranoia al disagio sociale e personale, dai dubbi e dalle preoccupazioni di una vita travagliata ai forti sentimenti di rivincita nei confronti del prossimo. Sullo stesso piano della precedente troviamo Forgotten, che poco si distingue per originalità, puntando tutto sulla potenza esecutiva dei cinque statunitensi. Un punto a favore dell’originalità di cui sopra va invece assegnato alla strumentale Cure For The Itch, che anche se non brilla di particolare bellezza qualitativa, si distingue per il massiccio uso di elementi elettronici, andando a spezzare la linearità sostanziale dell’album. Album che si conclude al meglio con l’intensissima Pushing Me Away, canzone all’insegna della melodia che ben racchiude le grandi qualità espressive della band.\r\n\r\nNon rimane molto da aggiungere a quanto detto, se non un piccolo monito nei confronti dei detrattori dei Linkin Park ed in particolare di un album del calibro di Hybrid Theory. Non nego che l’assiduo accostamento della band in questione al genere (o al mondo del) metal possa far storcere il naso a molti (in certi casi pure a me, ve l’assicuro), ma bisogna comunque elogiare quanto da loro fatto nei primi anni di quella che è una carriera poco più che decennale, sottolineando che la fortuna che un album può avere negli anni non potrà mai dipendere in tutto e per tutto da quanto i video estratti da esso siano trasmessi a rotazione dai canali musicali o da quanto spesso sentiamo le canzoni per radio. Il successo di una band si misura basandosi sulla qualità intrinseca di un lavoro eseguito e sulla durata nel tempo di quelle canzoni, aggiungendo poi alla valutazione altri importanti punti come l’originalità del prodotto e la capacità di far presa sull’ascoltatore; tutti elementi in continuo collegamento tra loro. Per cui, prendendo spunto dalla mia analisi, riascoltatevi con orecchie diverse Hybrid Theory, consci del fatto che si trattava dell’esordio sulle scene dei Linkin Park, che allora erano ancora una band emergente come tante altre. Una band che non ha mai avuto la pretesa di essere amata da tutti, ma che con le proprie armi ha tirato fuori un lavoro meritevole d’attenzione. E allora, per un momento soltanto, mi permetto di fare un salto indietro al 2000 e di esprimere a gran voce il mio giudizio nei confronti di quella giovane band e del loro disco d’esordio: ascolto consigliatissimo; non siete costretti ad essere degli adolescenti arrabbiati con la società per trarne beneficio.', 'angelo01', '28-5-2023 11:20:42', 'Linkin Park'),
@@ -47,35 +50,6 @@ INSERT INTO `argomenti` (`ID_arg`, `Titolo`, `Contenuto`, `ID_User`, `Data_Pubbl
 (37, 'Plugs of Apocalypse - Deeper Than Hell', 'I Plugs of Apocalypse si formano nel settembre del 2008 a Roma per opera di cinque ragazzi appassionati alle sonorità metalcore e deathcore tipiche di quegli anni. Influenzati da band quali Suicide Silence, All Shall Perish e As I Lay Dying, pubblicano il loro album d’esordio, Necropolis, nel 2011, e il secondo lavoro, Ashes, ad un anno di distanza. Quest’ultimo permise alla band capitolina di aprire concerti per nomi importanti come Protest The Hero, iwrestledabearonce e Texas in July. La loro ultima release, Deeper Than Hell, a quanto dichiarato dal frontman Giorgio Della Posta, è un concept sulla malinconia e più in generale sul male di vivere, visti più dal lato umano che da quello clinico. Per rafforzare questo ambizioso progetto ed espandere il proprio pubblico la band ha drasticamente cambiato il proprio sound, da un deathcore roccioso e fin troppo debitore delle band ispiratrici ad un alternative metal con forti influenze gothic che in più di un occasione sfocia nel pop, grazie soprattutto all’introduzione di sintetizzatori, tastiere e voci pulite sia maschili che femminili.\r\n\r\nLa breve title-track, dalle sonorità ambient, svolge il ruolo di intro, per cui il primo vero pezzo risulta essere Ablaze. Per chi era abituato al sound deathcore delle uscite precedenti della band dev’essere stato uno shock sentire per la prima volta questo brano: un riff di tastiera che sovrasta completamente le chitarre e ritornellone strappalacrime con tanto di elettronica quasi dubstep buttata un po’ a casaccio. A seguire troviamo Burn Everything I Love, la traccia più orecchiabile dell’album e allo stesso tempo la peggiore, specialmente per un ritornello che, nonostante l’aggiunta della voce femminile, mette i brividi per la banalità. È palese che qua i Plugs of Apocalypse hanno cercato di ricopiare spudoratamente quanto già fatto dai Bring Me the Horizon con tracce discusse come Can You Feel My Heart e Drown; le parti elettroniche suonano impacciate e veramente troppo tendenti al pop e, anche se era chiaro dall’inizio che non si stava parlando di metal vero e proprio, ora è chiaro che non si può parlare neanche del tutto di rock. Tears ha solo un problema: inizia con un giro di tastiera che è praticamente quello di Ablaze al contrario, ma tolto questo è probabilmente una delle migliori canzoni dell’album, le chitarre si fanno più potenti e le tastiere più ragionate, il ritornello è finalmente coinvolgente e originale. I Plugs of Apocalypse dimostrano di saper gestire i momenti più riflessivi e atmosferici nelle successive Live Together, Die Alone e Louder. La prima soprattutto risulta essere veramente coinvolgente e fresca e finalmente si registra una grande prestazione di Giorgio Della Posta al microfono. Altro picco è sicuramente Broken Bones, dove finalmente riusciamo a sentire anche un po’ del basso di Iacopo Fichera. La conclusiva Beyond the Sky ci illude con una bella intro pianistica per poi infrangere le nostre speranze a suon di breakdown e screams un po’ impacciati prima dell’ennesimo ritornello in salsa gothic metal, scelta opinabile per la conclusione di un disco che lascia l’amaro in bocca.\r\nPurtroppo non c’è una canzone che non tenti il ritornello melodico in favore di qualcosa di più sperimentale e questo fattore, una volta arrivati a più di metà del disco, risulta veramente stressante. Tutti gli episodi dell’album sono simili fra loro e questo rende Deeper Than Hell un lavoro difficile da ascoltare dall’inizio alla fine. La produzione è piatta e ha un suono plastificato che strizza fin troppo l’occhio all’elettronica più commerciale, le chitarre per la maggior parte del tempo si limitano a breakdown appartenenti a quel sound metalcore che la band sta cercando così tanto di abbandonare; per non parlare del basso, assente ingiustificato per gran parte dell’album. Ma nonostante questo l’album non è completamente da buttare via. I duetti fra Giorgio Della Posta e le cantanti ospiti sono sempre ben ragionati e piacevoli, così come gli inserti delle tastiere, che risultano arrangiate con gusto e donano ad ogni brano una valenza melodica ulteriore che ne aumenta la qualità. La presenza di tracce ben al di sopra della media ci fa chiedere cosa potrebbe dare questa band se osasse di più e completasse la complessa metamorfosi che ha cominciato con questo lavoro.\r\n\r\nDeeper Than Hell è quindi una mossa coraggiosa, una sterzata stilistica per certi versi lontana anni luce dal metal, che però ripaga solo a metà. Probabilmente questa evoluzione avrebbe dovuto svolgersi in modo più graduale e calcolato. Come già detto, la prolissità eccessiva causata dalla somiglianza di ogni traccia e la produzione smaccatamente pop sono le più grandi pecche di Deeper Than Hell, le canzoni prese singolarmente e inframmezzate con altri ascolti rendono molto meglio. Bisogna comunque premiare l’originalità e la capacità di muoversi su territori musicali completamenti diversi l’uno dall’altro, sebbene i risultati attuali non siano che di poco superiori alla sufficienza.', 'andrea99', '28-5-2023 11:25:44', 'Plugs of Apocalypse'),
 (38, 'Greta Van Fleet - The Battle at Garden`s Gate', 'Scrollarsi di dosso il macigno di un paragone con un nome altisonante che i più severi fra critici e ascoltatori continuano a rimproverargli (indovinate di quale band parliamo?) e riuscire a risplendere di luce propria dando ragione a tutti coloro che invece li celebrano come massimi paladini del rock contemporaneo o addirittura rinnovatori del suddetto in un panorama mainstream avaro e indifferente verso chi profonde sforzi al fine di mantenere alta l’attenzione sul nostro genere preferito. Che la band dei fratelli Kiszka abbia le luci dei riflettori fisse su di sé e venga puntualmente chiamata in causa nei più disparati dibattiti circa lo stato di salute del rock dei nostri tempi è innegabile e forse persino scontato sottolinearlo. Che tali chiacchiericci distolgano l’attenzione dal materiale da essi proposto andando ad alimentare d’ossigeno un gigantesco flame annichilente senza soluzione di continuità è altrettanto veritiero. Ed è frustrante. Ragion per cui, ci scuserà chi si aspetterebbe da questo scritto qualcosa di differente, noi cercheremo di soffermarci sulle canzoni e sulla condizione di forma dei Greta Van Fleet alla luce di quanto ascoltato nella seconda fatica discografica della band del Michigan, rea di aver arricchito con The Battle at Garden’s Gate il bagaglio di influenze, debitrici di un sound radicato nel meraviglioso decennio Settantiano che i nostri hanno dimostrato ancora di amare alla follia e di saper riportare in auge plasmandolo e “piegandolo” alla propria causa.\r\n\r\nSquadra che vince non si cambia ed è così che la line up celebra ancora l’idillio della cosiddetta azienda a carattere familiare con quei diavoli di Joshua, Jacob e Samuel ad occupare le rispettive mansioni di cantante, chitarrista e bassista/tastierista, col buon Daniel Wagner confermato alle pelli. Da segnalare invece la presenza del produttore Greg Kurstin il cui curriculum di lunga data annovera importanti collaborazioni con artisti internazionali della scena pop. La scelta di affidarsi a lui non è casuale: The Battle at Garden’s Gate, sebbene inserito in un chiaro contesto hard rock, carezza e lambisce suggestioni di carattere pop, o almeno della sua forma barocca e architettonica intesa nei Seventies. E non è tutto. Il disco sa destreggiarsi piuttosto agilmente anche nei territori cari al rock progressivo e psichedelico e al blues, a riprova di una maggiore ricercatezza e di una crescita della band palpabile ed evidente sin dai primi ascolti. Scordatevi dunque le progressioni frizzanti ed elettriche di pezzi come Safari Song o Highway Tune, inni di scatenato furore appartenenti alla prima fase del gruppo. Sin dalle prime note dell’opener Heat Above, infatti, è possibile percepire la decisa sterzata operata dai Greta Van Fleet a favore di suoni che privilegiano atmosfere oniriche e sognanti, quasi come se i quattro ragazzi si trovassero sospesi nel tempo fluttuando in nebbie imperscrutabili di arcana magia, con l’hammond a disegnare trame complesse e indecifrabili in piena linea con il tentativo di raccontare, forse con ingenuità, un mondo distante e sconsiderato, divorato dalle fauci del capitalismo all’alba di un’era ove a dominare sull’aspetto umano sono le macchine. Questa cosiddetta scissione dal mondo sensoriale fatto di alienazione e finzione viene agevolata dalle scelte di settaggio degli strumenti, in particolar modo della chitarra, la quale incarna un timbro caldo e dal sapore vintage mentre puntella di malinconia le sezioni di My Way, Soon, traccia vivace che ritrova nei ruggiti coi quali Joshua Kiszka battezza i versi del ritornello l’antica grinta primordiale degli esordi, sebbene dosata dall’innovativa riflessione e pacatezza del nuovo corso. D’altronde l’arpeggio pacifico e soffuso di Broken Bells sembra perdersi nei meandri irreali del flusso delle ere cristallizzandosi nella mente di chi ascolta ed ipnotizzandolo al cospetto di una canzone sentita e profonda il cui scopo è quello di narrare cullando con amorevolezza grazie ai sospiri del frontman che sfodera una delle prestazioni più convincenti, modulando la voce in un crescendo di pathos e andando a toccare vette di acutezza altissime, soprannaturali. E se Joshua Kiszka taglia la tensione emotiva con la facilità che incontrerebbe un coltello nel penetrare la superficie del burro, lo stesso non si può negare faccia Jacob Kiszka avvalendosi della sei corde e piazzando un riff dal retrogusto di un blues corrosivo nella successiva Built By Nations, la cui natura nervosa e acida annichilisce i nervi a fior di pelle e prosegue spedita nel macinare, nota dopo nota, passaggi che si acutizzano nell’assolo anarchico e quasi improvvisato che è messo lì a mo’ di jam a disorientare e sorprendere. L’ambizione dei Greta Van Fleet e la fame di musica è tale da distendere il minutaggio delle tracce oltre i limiti finora auto-concessisi: Age of Machine è soltanto uno degli episodi nei quali la sperimentazione si adopera ad incamerare i soffi di novità nell’otre di Eolo che, una volta scoperchiato, rischia però di non riuscire pienamente a far confluire i venti nella giusta direzione. Se da un lato vi è poco da rimproverare alla tecnica sopraffina con la quale i Greta Van Fleet esprimono la propria arte, dall’altro si ha come l’impressione che la dilatazione delle armonie giri sostanzialmente a vuoto, tradendo un pizzico di acerbità che in una suite dal titolo emblematico come Age of Machine non ci si aspetterebbe. Tears of Rain mette le cose a posto e lo fa eleggendo una chiave di interpretazione in acustico che pennella una ballad magistrale, ancora una volta accesa dalla prova al microfono di Joshua Kiszka che impreziosisce con vocalizzi paurosi in apertura anche l’enigmatica Stardust Chords. Light My Love e Caravel segnano un punto di rottura piuttosto netto con il prosieguo dell’album: si tratta infatti di due pezzi speculari che potremmo definire fillers e che non dispiacciono né esaltano.\r\nIl trittico finale, come anticipato, riassume la vera espressione di cambiamento che i Greta Van Fleet hanno cercato di imprimere sul loro percorso di musicisti. The Barbarians, infatti, si veste di tinte epiche e solenni affogando qualsiasi tentativo di riconoscibilità usufruendo di inaspettati cambi di tempo e forma. La stessa Trip the Light Fantastic si distingue per una struttura anomala che alterna ai consueti acuti di Joshua Kiszka dei cori impavidi e degli intermezzi psichedelici. La conclusiva The Weight of Dreams -che proponiamo di ascoltare nella sua corposa esecuzione live- si appropria delle formule dell’heavy prog sfogandosi in un assolo di tre minuti che celebra le potenzialità della band anche e soprattutto in ottica futura. Qualcuno può già dire con certezza cosa suoneranno questi ragazzi fra dieci anni?\r\n\r\nDopo aver ascoltato a più riprese The Battle at Garden’s Gate non possiamo esimerci dal sottolineare quanto il disco rappresenti un netto passo in avanti nella carriera dei Greta Van Fleet, non tanto per la bontà allucinante di ogni suo singolo episodio quanto per il tentativo (riuscito) di eclissarsi dai fantasmi della semplice quantomai semplicistica catalogazione da “revival band” di ragazzi prodigio benvoluti dalle major e dalle radio.\r\nC’è davvero poco di pappabile in termine di commercialità, il che è un merito non da poco. Siamo abbastanza fiduciosi che i nostri sapranno proseguire sulla strada già tracciata e arricchita con questo The Battle at Garden’s Gate, al momento spartiacque che sulla lunga decreterà il destino dei Greta Van Fleet incoronandoli come i tanto attesi Messia del rock moderno oppure relegandoli al ruolo di fantastiche meteore.', 'andrea99', '28-5-2023 11:30:28', 'Greta Van Fleet'),
 (39, 'Coldplay Music Of The Spheres', 'C’è un prima e un dopo Viva La Vida. Nei primi dieci anni di vita dei Coldplay quattro album, un substrato di Ep e b-side – in queste pagine abbiamo più volte sottolineato la necessità di riscoprirli – e un doppio processo: un lento abbandono di molti fan della prima ora da un lato, dall’altro una platea sempre più ampia e variegata a innamorarsi di quelle che ormai erano hit planetarie. Dopo il quarto album Chris Martin e i suoi colleghi hanno evidentemente fatto un patto: alternare un disco per chi ha amato o almeno voluto bene a quattro nerd sfigatelli che suonavano attorno a un mappamondo arancione al cambio di secolo, a un altro per tutti quelli che associano la parola Coldplay a coriandoli, fluo e un misto tra ballate patinate e singoli pop energici. Ecco quindi spiegata la discografia della band degli ultimi dieci anni. Mylo Xyloto (2011) sbirluccica di completi acetati, Ghost Stories (2014) è perlopiù intimista e notturno, in A Head Full of Dreams (2015) tornano i colori e luci, a dispetto del giro del mondo che fa sul profilo sonoro Everyday Life (2019) si mantiene nell’ombra. Come sarà allora Music of the Spheres?\r\n\r\nEsatto. Siamo nel lato cromatico della forza, acceso dalle roboanti collaborazioni con i Bts in My Universe e Selena Gomez in Let Somebody Go. E poi c’è Higher Power, che si è già conquistata le nostre orecchie per merito della radio e di qualche pubblicità. A santificare l’amore iniziale dei Coldplay per i Pink Floyd – consigliato il primo Ep per la quota “chicca discografica” – c’è il finale affidato a Coloratura, dieci minuti di una ballata che potrebbe anche finire un po’ prima, a dire il vero. Sorvoliamo rapidamente su tutti i brani che hanno per titolo i simboli, più che altro degli intermezzi strumentali tra i quali si distinguono un soul a cappella appesantito dal vocoder – il nome della canzone corrisponde al segno del cuore – con la partecipazione dei We Are King e Jacob Collier, e il tappeto digitale carino ma adornato con un orribile «ole’ ole’ ole’ ole’» di qualche live della band. Con un po’ di concentrazione quest’ultimo brano – il suo segno è l’infinito – è carino e riporta alla coda finale di Viva la Vida or Death and All His Friends. Rimanendo su questo album, la canzone più riuscita di Music of the Spheres è…. una demo scartata per il disco del 2008. Music of the Pride ha mantenuto anche lo stesso testo di The Man Who Swears, ma ha stravolto la bozza voce e piano – probabilmente in rete c’è traccia – in quella che sarà certamente, nel bene o nel male, una hit e a più di qualcuno farà venire in mente Shoot the Runner dei Kasabian.\r\n\r\nI Coldplay sono quel compagno di banco con cui al liceo facevi di tutto e di cui hai perso le tracce, un po’ perché sei cresciuto e un po’ perché il fascino di quei tempi lo ha abbandonato. Ogni tanto ti ricorda perché gli hai voluto bene, ma è diventato qualcos’altro. Certo, un concerto di Chris Martin e soci sarà uno spettacolo nel vero senso della parola, ma basta questo? Se sei una band su cui piovono dischi d’oro e altri riconoscimenti ma sei prevedibile e hai un passato costellato di brani di gran lunga migliori degli ultimi album, forse la risposta arriva da sé.', 'jessica_real_99', '28-5-2023 11:33:51', 'Coldplay');
-
---
--- Trigger `argomenti`
---
-DELIMITER $$
-CREATE TRIGGER `argomenti_AFTER_DELETE` AFTER DELETE ON `argomenti` FOR EACH ROW BEGIN
-Delete from likes where (ID_argomento=old.ID_arg);
-Delete from commenti where (ID_argomento=old.ID_arg);
-END
-$$
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `commenti`
---
-
-CREATE TABLE `commenti` (
-  `ID_Comm` int(11) NOT NULL,
-  `ID_argomento` int(11) DEFAULT NULL,
-  `ID_User` varchar(50) DEFAULT NULL,
-  `Commento` mediumtext DEFAULT NULL,
-  `orario` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `commenti`
---
 
 INSERT INTO `commenti` (`ID_Comm`, `ID_argomento`, `ID_User`, `Commento`, `orario`) VALUES
 (39, 35, 'andrea99', 'Secondo me quest\'album è uno dei migliori mai creato in assoluto dai linkin park!', '28-5-2023 11:23:26'),
@@ -88,22 +62,6 @@ INSERT INTO `commenti` (`ID_Comm`, `ID_argomento`, `ID_User`, `Commento`, `orari
 (46, 34, 'andrea99', 'ESATTAMENTEEEEE', '28-5-2023 11:41:19'),
 (47, 37, 'angelo01', 'Finalmente un gruppo italiano che fa delle bellissime canzoni!', '28-5-2023 11:42:48'),
 (48, 36, 'jessica_real_99', 'Boomer :)', '28-5-2023 12:45:16');
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `likes`
---
-
-CREATE TABLE `likes` (
-  `ID_Like` int(11) NOT NULL,
-  `ID_argomento` int(11) DEFAULT NULL,
-  `ID_User` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `likes`
---
 
 INSERT INTO `likes` (`ID_Like`, `ID_argomento`, `ID_User`) VALUES
 (136, 35, 'andrea99'),
@@ -118,80 +76,10 @@ INSERT INTO `likes` (`ID_Like`, `ID_argomento`, `ID_User`) VALUES
 (145, 38, 'angelo01'),
 (146, 37, 'angelo01');
 
--- --------------------------------------------------------
-
---
--- Struttura della tabella `utente`
---
-
-CREATE TABLE `utente` (
-  `username` varchar(50) NOT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `usr_password` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `utente`
---
-
 INSERT INTO `utente` (`username`, `email`, `usr_password`) VALUES
 ('andrea99', 'andrea.galvano2@gmail.com', 'vB5IDOejPFvCfWkunlVpZQ=='),
 ('angelo01', 'andrea.galvano2@gmail.com', 'vB5IDOejPFvCfWkunlVpZQ=='),
 ('federico_metal', 'andrea.galvano2@gmail.com', 'vB5IDOejPFvCfWkunlVpZQ=='),
 ('jessica_real_99', 'andrea.galvano2@gmail.com', 'vB5IDOejPFvCfWkunlVpZQ==');
 
---le password sono tutte 123456789?
---
--- Indici per le tabelle scaricate
---
-
---
--- Indici per le tabelle `argomenti`
---
-ALTER TABLE `argomenti`
-  ADD PRIMARY KEY (`ID_arg`);
-
---
--- Indici per le tabelle `commenti`
---
-ALTER TABLE `commenti`
-  ADD PRIMARY KEY (`ID_Comm`);
-
---
--- Indici per le tabelle `likes`
---
-ALTER TABLE `likes`
-  ADD PRIMARY KEY (`ID_Like`);
-
---
--- Indici per le tabelle `utente`
---
-ALTER TABLE `utente`
-  ADD PRIMARY KEY (`username`);
-
---
--- AUTO_INCREMENT per le tabelle scaricate
---
-
---
--- AUTO_INCREMENT per la tabella `argomenti`
---
-ALTER TABLE `argomenti`
-  MODIFY `ID_arg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
---
--- AUTO_INCREMENT per la tabella `commenti`
---
-ALTER TABLE `commenti`
-  MODIFY `ID_Comm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
---
--- AUTO_INCREMENT per la tabella `likes`
---
-ALTER TABLE `likes`
-  MODIFY `ID_Like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*Tutte le password sono 123456789? */
