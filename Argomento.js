@@ -7,7 +7,7 @@ function MettiLike(event){
       const fdata=new FormData();
       fdata.append('id_like',event.currentTarget.dataset.likeid);
       const form_data={method:'Post',body: fdata};
-      fetch("http://localhost/homework1/Database_Requests.php?richiesta=remove_like",form_data).then(onResponseR_Like).then(onJsonR_Like);
+      fetch("Database_Requests.php?richiesta=remove_like",form_data).then(onResponseR_Like).then(onJsonR_Like);
       const BtnContainer=event.currentTarget.parentNode;
       const nLike=BtnContainer.querySelector('.nLike');
       nLike.textContent=parseInt(nLike.textContent)-1;
@@ -17,11 +17,11 @@ function MettiLike(event){
       event.currentTarget.src="Images/Heart_Filled.png";
       const fdata=new FormData();
       fdata.append('username',Username);
-      console.log(Username);
+
       const Argomento=event.currentTarget.parentNode.parentNode;
       fdata.append('ID_arg',Argomento.id);
       const form_data={method:'Post',body: fdata};
-      fetch("http://localhost/homework1/Database_Requests.php?richiesta=add_like",form_data).then(onResponseA_Like).then(onJsonA_Like);
+      fetch("Database_Requests.php?richiesta=add_like",form_data).then(onResponseA_Like).then(onJsonA_Like);
       const BtnContainer=event.currentTarget.parentNode;
       const nLike=BtnContainer.querySelector('.nLike');
       nLike.textContent=parseInt(nLike.textContent)+1;
@@ -41,7 +41,7 @@ function InviaCommenti(event){
         fdata.append('commento',commento);
         fdata.append('orario',datetime);
         const form_data={method:'Post',body: fdata};
-        fetch("http://localhost/homework1/Database_Requests.php?richiesta=add_comment",form_data).then(onResponseA_Commento).then(onJsonA_Commento);
+        fetch("Database_Requests.php?richiesta=add_comment",form_data).then(onResponseA_Commento).then(onJsonA_Commento);
     }
     textbox.value="";
 }
@@ -52,12 +52,11 @@ function enterKeyPressed(event) {
 }
 function EliminaCommento(event){
     const id_commento=event.currentTarget.id;
-    console.log(id_commento);
 
     const fdata=new FormData();
     fdata.append('id_comm',id_commento);
     const form_data={method:'Post',body: fdata};
-    fetch("http://localhost/homework1/Database_Requests.php?richiesta=remove_comment",form_data).then(onResponseR_Comment).then(onJsonR_Comment);
+    fetch("Database_Requests.php?richiesta=remove_comment",form_data).then(onResponseR_Comment).then(onJsonR_Comment);
     
     const InfoContainerRight=event.currentTarget.parentNode;
     const InfoContainer=InfoContainerRight.parentNode;
@@ -84,7 +83,7 @@ function onResponseR_Comment(response){
     return response.json();
 }
 function onJsonR_Comment(json){
-    console.log(json);
+
 }
 function onResponseA_Like(response){
     return response.json();
@@ -93,10 +92,10 @@ function onResponseA_Commento(response){
     return response.json();
 }
 function onJsonR_Like(json){
-    console.log(json);
+
 }
 function onJsonComments(json){
-    console.log(json);
+
     const CommentContainer =document.createElement('div');
     CommentContainer.classList.add('CommentContainer');
 
@@ -178,7 +177,7 @@ function onJsonComments(json){
 
 }
 function onJsonA_Like(json){
-    console.log(json);
+
     const Argomento=document.querySelector('.Argomento');
     const Arg_Like=Argomento.querySelector('.Like')
     if(json.ID_argomento===Argomento.id){
@@ -186,7 +185,7 @@ function onJsonA_Like(json){
     }
 }
 function onJsonA_Commento(json){
-    console.log(json);
+
     const CommentContainer =document.querySelector('.CommentContainer');
     const CreaCommento =document.querySelector('.CreaCommento');
 
@@ -240,7 +239,6 @@ function onJsonA_Commento(json){
 }
 function onJsonnLike(json){
     const Argomento=document.querySelector('.Argomento');
-    console.log(json);
     const Arg_nLike=Argomento.querySelector('.nLike');
     if(json.ID_argomento===Argomento.id){
         Arg_nLike.textContent=json.numLike;
@@ -248,7 +246,6 @@ function onJsonnLike(json){
 }
 
 function onJsonLikes(json){
-    console.log(json);
     if(json.length===0){
         const argomento=document.querySelector('.Argomento');
         const nLike=argomento.querySelector('.nLike');
@@ -258,7 +255,6 @@ function onJsonLikes(json){
         Like.setAttribute("id","UnChecked");
     }else{
         const argomento=document.querySelector('.Argomento');
-        console.log(argomento);
         const Arg_Like=argomento.querySelector('.Like');
         const Arg_nLike=argomento.querySelector('.nLike');
         for(let i of json){
@@ -273,7 +269,7 @@ function onJsonLikes(json){
         const fdata=new FormData();
         fdata.append('id_arg',id_arg);
         const form_data={method:'Post',body: fdata};
-        fetch("http://localhost/homework1/Database_Requests.php?richiesta=num_like",form_data).then(onResponsenLike).then(onJsonnLike);
+        fetch("Database_Requests.php?richiesta=num_like",form_data).then(onResponsenLike).then(onJsonnLike);
         if(Arg_Like.id!=="Checked"){
           Arg_Like.src="Images/Heart_Empty.png";
           Arg_Like.setAttribute("data-likeid","none");
@@ -284,7 +280,6 @@ function onJsonLikes(json){
     }
 }
 function onJson(json){
-    console.log(json);
     const ParentContainer=document.querySelector('.ParentContainer');
     const Argomento=document.createElement('div');
     Argomento.classList.add('Argomento');
@@ -346,12 +341,12 @@ function onJson(json){
     Argomento.appendChild(BtnContainer);
 
     ParentContainer.appendChild(Argomento);
-    fetch("http://localhost/homework1/Database_Requests.php?richiesta=get_likes").then(onResponseLikes).then(onJsonLikes);
+    fetch("Database_Requests.php?richiesta=get_likes").then(onResponseLikes).then(onJsonLikes);
 
     const fdata1=new FormData();
     fdata1.append('id_arg',id_arg);
     const form_data1={method:'Post',body: fdata1};
-    fetch("http://localhost/homework1/Database_Requests.php?richiesta=get_argoment_comments",form_data1).then(onResponseComments).then(onJsonComments);
+    fetch("Database_Requests.php?richiesta=get_argoment_comments",form_data1).then(onResponseComments).then(onJsonComments);
 }
 function Apri_User(event){
     window.open("utente.php","_self");
@@ -366,7 +361,7 @@ if(document.body.contains(document.querySelector("#userbtn"))){
     const fdata=new FormData();
     fdata.append('id_arg',id_arg);
     const form_data={method:'Post',body: fdata};
-    fetch("http://localhost/homework1/Database_Requests.php?richiesta=get_argoment",form_data).then(onResponse).then(onJson);
+    fetch("Database_Requests.php?richiesta=get_argoment",form_data).then(onResponse).then(onJson);
 }
 if(document.body.contains(document.querySelector("#logoutbtn"))){
     const logoutbtn= document.querySelector('#logoutbtn');
@@ -391,7 +386,6 @@ function Logout(event){
 }
 function Apri_Artista(event){
     const artista=event.currentTarget.textContent.replace("#","");
-    console.log(artista);
     window.open("Artista.php?nome_artista="+encodeURI(artista),"_self");
 }
 function CercaArgomento(event){
