@@ -13,7 +13,6 @@ if(document.body.contains(document.querySelector("#loginbtn"))){
 
 function Apri_Artista(event){
   const artista=event.currentTarget.textContent.replace("#","");
-  console.log(artista);
   window.open("Artista.php?nome_artista="+encodeURI(artista),"_self");
 }
 
@@ -45,7 +44,7 @@ function MettiLike(event){
     const fdata=new FormData();
     fdata.append('id_like',event.currentTarget.dataset.likeid);
     const form_data={method:'Post',body: fdata};
-    fetch("http://localhost/homework1/Database_Requests.php?richiesta=remove_like",form_data).then(onResponseR_Like).then(onJsonR_Like);
+    fetch("Database_Requests.php?richiesta=remove_like",form_data).then(onResponseR_Like).then(onJsonR_Like);
     const BtnContainer=event.currentTarget.parentNode;
     const nLike=BtnContainer.querySelector('.nLike');
     nLike.textContent=parseInt(nLike.textContent)-1;
@@ -55,11 +54,10 @@ function MettiLike(event){
     event.currentTarget.src="Images/Heart_Filled.png";
     const fdata=new FormData();
     fdata.append('username',Username);
-    console.log(Username);
     const Argomento=event.currentTarget.parentNode.parentNode;
     fdata.append('ID_arg',Argomento.id);
     const form_data={method:'Post',body: fdata};
-    fetch("http://localhost/homework1/Database_Requests.php?richiesta=add_like",form_data).then(onResponseA_Like).then(onJsonA_Like);
+    fetch("Database_Requests.php?richiesta=add_like",form_data).then(onResponseA_Like).then(onJsonA_Like);
     const BtnContainer=event.currentTarget.parentNode;
     const nLike=BtnContainer.querySelector('.nLike');
     nLike.textContent=parseInt(nLike.textContent)+1;
@@ -83,19 +81,16 @@ function onResponseA_Argomento(response){
   return response.json();
 }
 function onJsonA_Argomento(json){
-  console.log(json);
   if(json[0].MSG==="1"){
     location.reload();
   }
 }
 function onJsonR_Like(json){
-  console.log(json);
 }
 function onResponseA_Like(response){
   return response.json();
 }
 function onJsonA_Like(json){
-  console.log(json);
   const ListaArgomenti=document.querySelectorAll('.Argomento');
   for(argomento of ListaArgomenti){
     const Arg_Like=argomento.querySelector('.Like')
@@ -106,7 +101,6 @@ function onJsonA_Like(json){
 }
 function onJsonnLike(json){
   const ListaArgomenti=document.querySelectorAll('.Argomento');
-  console.log(json);
 
   for(argomento of ListaArgomenti){
     const Arg_nLike=argomento.querySelector('.nLike')
@@ -116,11 +110,8 @@ function onJsonnLike(json){
   }
 }
 function onJson(json){
- console.log(json);
   if(json.length>0){
     for(elemento of json){
-      console.log(elemento);
-  
 
       const Argomento=document.createElement('div');
       Argomento.classList.add('Argomento');
@@ -187,7 +178,7 @@ function onJson(json){
 
       document.querySelector('.ParentContainer').appendChild(Argomento);
     }
-    fetch("http://localhost/homework1/Database_Requests.php?richiesta=get_likes").then(onResponseLikes).then(onJsonLikes);
+    fetch("Database_Requests.php?richiesta=get_likes").then(onResponseLikes).then(onJsonLikes);
   }else{
     const container=document.createElement('div');
     container.classList.add('Argomento');
@@ -200,7 +191,6 @@ function onJson(json){
 }
 
 function onJsonLikes(json){
-  console.log(json);
   if(json.length===0){
     const argomenti=document.querySelectorAll('.Argomento');
     for(let argomento of argomenti){
@@ -226,7 +216,7 @@ function onJsonLikes(json){
           const fdata=new FormData();
           fdata.append('id_arg',i.ID_argomento);
           const form_data={method:'Post',body: fdata};
-          fetch("http://localhost/homework1/Database_Requests.php?richiesta=num_like",form_data).then(onResponsenLike).then(onJsonnLike);
+          fetch("Database_Requests.php?richiesta=num_like",form_data).then(onResponsenLike).then(onJsonnLike);
         }
       }
       if(Arg_Like.id!=="Checked"){
@@ -255,7 +245,7 @@ function Invia_Argomento(event){
     fdata.append('data_pubblicazione',datetime);
     fdata.append('tag',tag.value);
     const form_data={method:'Post',body: fdata};
-    fetch("http://localhost/homework1/Database_Requests.php?richiesta=add_argoment",form_data).then(onResponseA_Argomento).then(onJsonA_Argomento);
+    fetch("Database_Requests.php?richiesta=add_argoment",form_data).then(onResponseA_Argomento).then(onJsonA_Argomento);
   }
 }
 let Username="";
@@ -263,11 +253,10 @@ if(document.body.contains(document.querySelector("#userbtn"))){
   const userbtn=document.querySelector("#userbtn");
   userbtn.addEventListener('click',Apri_User);
   Username=document.querySelector("#ID_USER").textContent;
-  fetch("http://localhost/homework1/Database_Requests.php?richiesta=get_argoments").then(onResponse).then(onJson);
+  fetch("Database_Requests.php?richiesta=get_argoments").then(onResponse).then(onJson);
   const InviaArgomento=document.querySelector('.InviaArgomento');
   InviaArgomento.addEventListener('click',Invia_Argomento);
 }
-console.log(Username);
 if(document.body.contains(document.querySelector("#LogInbutton"))){
   const LogInbutton=document.querySelector("#LogInbutton");
   LogInbutton.addEventListener('click',Login);
