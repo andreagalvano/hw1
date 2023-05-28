@@ -4,19 +4,6 @@ form{
   height: fit-content;
   width: 100%;
 }
-.container {
-  width: 50%;
-  max-width: 400px;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #333333c0;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
-  backdrop-filter: blur(15px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 #UpperForm{
   display: flex;
   width: 100%;
@@ -37,13 +24,28 @@ form{
   height: 80px;
   margin-right: 20px;
 }
+.container {
+  width: 50%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #333333c0;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 label {
   display: block;
   margin-bottom: 10px;
 }
 
 #username,
-#password {
+#email,
+#password,
+#Rpassword {
   width: 100%;
   height: 40px;
   border-radius: 40px;
@@ -54,6 +56,7 @@ label {
   background-color: #222222c0;
   color: white;
 }
+
 #BtnContainer{
   width: 100%;
   display: flex;
@@ -65,7 +68,7 @@ label {
   width: 100%;
   height: 2px;
   border-radius: 2px;
-  background-color: rgb(220 220 220);
+  background-color: rgb(220, 220, 220) ;
 }
 .btn {
   display: flex;
@@ -82,25 +85,11 @@ label {
   justify-content: center;
 }
 
-.btn:hover,  #SignUpbtn:hover {
+.btn:hover,  #LogInbtn:hover {
   background-color: #536DFE;
 }
 
-#username:focus,
-#password:focus{
-  border: 2px solid #3D5AFE;
-}
-
-#username.redBorder,
-#password.redBorder{
-  border: 2px solid #ff0026;
-  
-}
-#username.hshaking,
-#password.hshaking {
-  animation: hshaking 0.35s 1;
-}
-#SignUpContainer{
+#SigInContainer{
   margin-top: 10px;
   display: flex;
   justify-content: center;
@@ -108,7 +97,7 @@ label {
   flex-direction: column;
   width: 100%;
 }
-#SignUpbtn{
+#SigInbtn{
   margin-top: 10px;
   display: flex;
   padding: 5px 5px;
@@ -123,9 +112,34 @@ label {
   align-items: center;
   justify-content: center;
 }
-#SignUpContainer em{
+#SigInbtn:hover {
+  background-color: #536DFE;
+}
+#SigInContainer em{
   margin: 0;
 }
+#username:focus,
+#email:focus,
+#password:focus,
+#Rpassword:focus{
+  border: 2px solid #3D5AFE;
+}
+
+#username.redBorder,
+#email.redBorder,
+#password.redBorder,
+#Rpassword.redBorder{
+  border: 2px solid #ff0026;
+  
+}
+
+#username.hshaking,
+#email.hshaking,
+#password.hshaking,
+#Rpassword.hshaking {
+  animation: hshaking 0.35s 1;
+}
+
 @keyframes hshaking {
   0% { transform: translateX(0) }
   25% { transform: translateX(5px) }
@@ -136,6 +150,7 @@ label {
 
 @media (max-width: 800px) {
   .container{
-    width: 100%;
+    width: calc(100% - 40px);
+    max-width: none;
   }
 }
