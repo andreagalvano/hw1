@@ -20,7 +20,6 @@ function convertiNumero(numero) {
 
 const infobtn= document.querySelector('#infobtn');
 function onJsonR_Like(json){
-  console.log(json);
 }
 function onResponseR_Like(response){
   return response.json();
@@ -29,7 +28,6 @@ function onResponseA_Like(response){
   return response.json();
 }
 function onJsonA_Like(json){
-  console.log(json);
   const ListaArgomenti=document.querySelectorAll('.Argomento');
   for(argomento of ListaArgomenti){
     const Arg_Like=argomento.querySelector('.Like')
@@ -46,7 +44,7 @@ function MettiLike(event){
     const fdata=new FormData();
     fdata.append('id_like',event.currentTarget.dataset.likeid);
     const form_data={method:'Post',body: fdata};
-    fetch("http://localhost/homework1/Database_Requests.php?richiesta=remove_like",form_data).then(onResponseR_Like).then(onJsonR_Like);
+    fetch("Database_Requests.php?richiesta=remove_like",form_data).then(onResponseR_Like).then(onJsonR_Like);
     const BtnContainer=event.currentTarget.parentNode;
     const nLike=BtnContainer.querySelector('.nLike');
     nLike.textContent=parseInt(nLike.textContent)-1;
@@ -56,11 +54,10 @@ function MettiLike(event){
     event.currentTarget.src="Images/Heart_Filled.png";
     const fdata=new FormData();
     fdata.append('username',Username);
-    console.log(Username);
     const Argomento=event.currentTarget.parentNode.parentNode;
     fdata.append('ID_arg',Argomento.id);
     const form_data={method:'Post',body: fdata};
-    fetch("http://localhost/homework1/Database_Requests.php?richiesta=add_like",form_data).then(onResponseA_Like).then(onJsonA_Like);
+    fetch("Database_Requests.php?richiesta=add_like",form_data).then(onResponseA_Like).then(onJsonA_Like);
     const BtnContainer=event.currentTarget.parentNode;
     const nLike=BtnContainer.querySelector('.nLike');
     nLike.textContent=parseInt(nLike.textContent)+1;
@@ -117,7 +114,6 @@ function onResponsenLike(response){
 }
 function onJsonnLike(json){
   const ListaArgomenti=document.querySelectorAll('.Single_Argomento');
-  console.log(json);
 
   for(argomento of ListaArgomenti){
     const Arg_nLike=argomento.querySelector('.nLike')
@@ -135,7 +131,6 @@ function onResponseLikes(response){
   return response.json();
 }
 function onJsonLikes(json){
-  console.log(json);
   if(json.length===0){
     const argomenti=document.querySelectorAll('.ArgomentContainer');
     for(let argomento of argomenti){
@@ -161,7 +156,7 @@ function onJsonLikes(json){
           const fdata=new FormData();
           fdata.append('id_arg',i.ID_argomento);
           const form_data={method:'Post',body: fdata};
-          fetch("http://localhost/homework1/Database_Requests.php?richiesta=num_like",form_data).then(onResponsenLike).then(onJsonnLike);
+          fetch("Database_Requests.php?richiesta=num_like",form_data).then(onResponsenLike).then(onJsonnLike);
         }
       }
       if(Arg_Like.id!=="Checked"){
@@ -181,7 +176,6 @@ function Apri_Argomento(event){
   window.open("Argomento.php?id_arg="+id_arg+"&titolo="+encodeURI(titolo),"_self");
 }
 function onJsonArgomenti(json){
-  console.log(json);
   const ParentContainer=document.querySelector('.ParentContainer');
   const ArgomentContainer=document.createElement('div');
   ArgomentContainer.classList.add('ArgomentContainer');
@@ -251,7 +245,7 @@ function onJsonArgomenti(json){
 
         ArgomentContainer.appendChild(Argomento);
     }
-    fetch("http://localhost/homework1/Database_Requests.php?richiesta=get_likes").then(onResponseLikes).then(onJsonLikes);
+    fetch("Database_Requests.php?richiesta=get_likes").then(onResponseLikes).then(onJsonLikes);
 }else{
     const messaggio=document.createElement('h1');
     messaggio.textContent="Non sono stati creati argomenti su "+nome_artista;
@@ -260,7 +254,6 @@ function onJsonArgomenti(json){
 
 }
 function onJsonAlbum(json){
-  console.log(json);
   const lista_album=json.items;
   const ParentContainer=document.querySelector('.ParentContainer');
   const vista_album=document.createElement('div');
@@ -311,7 +304,6 @@ function onJsonAlbum(json){
   fetch("http://localhost/homework1/get_artist_argoments.php",form_data).then(onResponseArgomenti).then(onJsonArgomenti);
 }
 function onJson(json){
-    console.log(json);
     const artista=json;
     const ParentContainer=document.querySelector('.ParentContainer');
     const immagine_artista=artista.images[0].url;
