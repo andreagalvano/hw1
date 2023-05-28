@@ -1,0 +1,335 @@
+.Argomento{
+  width: 50%;
+  /* max-width: 600px; */
+  height: fit-content;
+  background-color: #333333c0;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  margin-bottom: 20px;
+  backdrop-filter: blur(15px);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.InfoContainer{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.UserInfo{
+  display: flex;
+  height: fit-content;
+  margin-left: 0px;
+  margin-right: 0px;
+  align-items: center;
+  padding: 5px;
+}
+.Username{
+  height: 30px;
+  font-weight: normal;
+  font-size: 1.3em;
+  display: flex;
+  color: #ffffff;
+  margin: 0;
+  padding: 5px;
+  border-radius: 5px;
+  align-items: center;
+
+}
+.DataPubblicazione{
+  height: 30px;
+  font-size: 0.8em;
+  color: rgb(220, 220, 220);
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+  margin-right: 10px;
+  margin: 0;
+  padding: 5px;
+}
+
+.UserImg{
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 30px;
+  object-fit: contain;
+}
+
+.Title{
+  display: flex;
+  align-items:center;
+  font-size: 1.5em;
+  padding: 5px;
+}
+
+.Contenuto{
+  display: block;
+  margin: 0px;
+  padding: 5px;
+  word-wrap:break-word;
+  font-size: 1em;
+  text-align: justify;
+  white-space: pre-line;
+}
+.BtnContainer{
+  width: calc(100% - 10px);
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.like{
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  margin-right: -2px;
+}
+.like:hover{
+  cursor: pointer;
+}
+
+.ApriArgomento a:link, a:visited, a:active{
+color: white;
+}
+.ApriArgomento{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15px;
+  width: 100px;
+  background-color: #3D5AFE;
+  padding: 5px;
+  cursor: default;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+
+}
+.ApriArgomento:hover{
+  background-color: #536DFE;
+  cursor: pointer;
+}
+.nLike{
+  color: rgb(220, 220, 220);
+  display: flex;
+  margin: 0;
+  padding: 5px;
+  font-size: 0.8em;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.Benvenuto{
+  display: flex;
+  font-size: 1.6em;
+  margin: 0;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.pBenvenuto{
+  display: flex;
+  font-size: 1.1em;
+  margin: 0;
+  padding: 5px;
+  text-align: justify;
+  white-space: pre-line;
+}
+.ArgomentTag{
+  display: flex;
+  color: rgb(220, 220, 220);
+  padding: 5px;
+  font-size: 0.9em;
+}
+.ArgomentTag:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+.CreaArgomento{
+  width: 50%;
+  /* max-width: 800px; */
+  height: fit-content;
+  background-color: #333333c0;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  margin-bottom: 20px;
+  backdrop-filter: blur(15px);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.CreaArgomento h1{
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.TitleContainer{
+  display: flex;
+  height: fit-content;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+.textboxTitle {
+  border: 2px solid transparent;
+  width: 85%;
+  padding: 10px 15px 10px 15px;
+  border-radius: 30px;
+  background-color: #333333c0;
+  color: #fff;
+  outline: none;
+}
+.textboxTitle:focus {
+  border: 2px solid#3D5AFE;
+}
+.TitleContainer h6{
+  display: flex;
+  margin: 0;
+  font-size: 1em;
+  text-align: left;
+  justify-content: left;
+  /* margin-right: 25px; */
+  font-weight: lighter;
+  /* width:18%; */
+}
+.ArgomentContainer{
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.ArgomentContainer h6{
+  display: block;
+  width: 100%;
+  margin: 0;
+  font-size: 1em;
+  font-weight: lighter;
+  margin-bottom: 5px;
+}
+.textboxArgoment {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #333333c0;
+  color: #fff;
+  outline: none;
+  font-family: 'Roboto', sans-serif;
+  border: 2px solid transparent;
+}
+.textboxArgoment:focus {
+  border: 2px solid#3D5AFE;
+}
+.InviaArgomento{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  background-color: #3D5AFE;
+  padding: 5px;
+  cursor: default;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+
+}
+.InviaArgomento:hover{
+  background-color: #536DFE;
+  cursor: pointer;
+}
+.CreaArgomentoBtnContainer{
+  height: fit-content;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  margin-left: 0px;
+  margin-right: 0px;
+  justify-content: flex-end;
+}
+.tagContainer{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  margin-right: 5px;
+  align-items: center;
+  justify-content: space-between;
+}
+.tagContainer h6{
+  display: flex;
+  margin: 0;
+  font-size: 1em;
+  font-weight: lighter;
+  /* margin-right: 5px; */
+  /* width: 35%; */
+}
+.textboxTag{
+  width: 65%;
+  padding: 10px 15px 10px 15px;
+  border-radius: 30px;
+  background-color: #333333c0;
+  color: #fff;
+  outline: none;
+  font-family: 'Roboto', sans-serif;
+  border: 2px solid transparent;
+}
+.textboxTag:focus {
+  border: 2px solid#3D5AFE;
+}
+
+@media (max-width: 800px) {
+  .TitleContainer{
+    flex-direction: column;
+  }
+  .TitleContainer h6{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  .CreaArgomento{
+    width: calc(100% - 20px);
+  }
+
+  .Argomento{
+    width: auto;
+  }
+
+  .CreaArgomentoBtnContainer{
+    flex-direction: column;
+  }
+
+  .tagContainer{
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .tagContainer h6{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  .textboxTitle{
+    width: 100%;
+  }
+  
+  .textboxTag{
+    width: 100%;
+  }
+
+  .InviaArgomento{
+    margin-top: 10px;
+    width: calc(100% - 10px);
+  }
+}

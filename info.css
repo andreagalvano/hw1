@@ -1,0 +1,185 @@
+#InfoContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:center;
+  width: 100%;
+  height: calc(75%);
+  padding: 0;
+  margin: 0;
+}
+#InfoLeft{
+  width: calc(19% - 20px);
+  /* max-width: 350px; */
+  height: calc(100% - 40px);
+  background-color: #007bffc0;
+  margin-left: 20px;
+  margin-right: 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+#CreatorInfo{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#IMG{
+  background-image: url("Images/andrea.png");
+  width: 200px;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  border-radius: 200px;
+}
+#InfoRight{
+  width: calc(30% - 20px);
+  height: fit-content;
+  background-color: #333333c0;
+  margin-left: 10px;
+  margin-right: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 5px 5px 5px 5px;
+  align-items: center;
+}
+#InfoRight h1{
+  margin: 0;
+  padding: 5px;
+}
+#InfoRight p{
+  display: flex;
+  font-size: 1.1em;
+  margin: 0;
+  padding: 5px;
+  text-align: justify;
+  white-space: pre-line;
+}
+#InfoDivider{
+  margin-top: 5px;
+  width: 80%;
+  height: 2px;
+  border-radius: 2px;
+  background-color: white;
+}
+#SocialContainer{
+  width: 80%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+.Element{
+  margin-top: 20px;
+  padding: 3px 3px 3px;
+  border-radius: 10px;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  transition: background-color 0.3s ease;
+}
+#FBIMG{
+  display: block;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png");
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 20px;
+}
+#IGIMG{
+  display: block;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1024px-Instagram_logo_2022.svg.png");
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 20px;
+}
+#GHIMG{
+  display: block;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/25/25231.png");
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 20px;
+}
+.Element h2{
+  font-size: 1.2em;
+  font-weight: normal;
+  display: block;
+  height: auto;
+  text-align: center;
+}
+.Element:hover{
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+ #CreatorInfo em{
+  font-size: 0.9em;
+  display: block;
+  margin-top: 3px;
+  color: rgb(222, 222, 222);
+}
+#CreatorInfo h1{
+  font-size: 1.2em;
+  display: block;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  color: white;
+}
+
+@media (max-width: 800px) {
+  #InfoContainer{
+    flex-direction: column;
+  }
+  #InfoLeft{
+    width: calc(100% - 20px);
+    margin: 0;
+    margin-bottom: 10px;
+    height: 350px;
+  }
+
+  #IMG{
+    width: 100px;
+    height: 100px;
+  }
+  .Element{
+    height: fit-content;
+    margin-top: 5px;
+  }
+  #FBIMG{
+    width: 30px;
+    height: 30px;
+  } 
+  #IGIMG{
+    width: 30px;
+    height: 30px;
+  } 
+  #GHIMG{
+    width: 30px;
+    height: 30px;
+  } 
+  #InfoRight{
+    width: calc(100% - 10px);
+    margin: 0;
+    margin-bottom: 10px;
+    height: fit-content;
+  }
+}

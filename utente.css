@@ -1,0 +1,354 @@
+#InfoContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  width: 100%;
+  height: calc(75%);
+  /* padding: 10px; */
+  margin: 0;
+}
+.ArgomentInfo{
+  width: 50%;
+  /* max-width: 610px; */
+  height: fit-content;
+  font-size: 2em;
+  background-color: #3d5afec0;
+  border-radius: 10px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 5px 5px 5px 5px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.Argomento{
+  padding: 10px;
+  height: fit-content;
+  display: flex;
+  width: calc(100% - 20px);
+  flex-direction: column;
+  align-items: center;
+  background-color: #3333335e;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.Benvenuto{
+  display: flex;
+  font-size: 1.6em;
+  margin: 0;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.pBenvenuto{
+  display: flex;
+  font-size: 1.1em;
+  margin: 0;
+  padding: 5px;
+  width: calc(100% - 5px);
+  text-align: justify;
+  white-space: pre-line;
+}
+.ArgomentContainer{
+  width: calc(50% - 10px);
+  /* max-width: 600px; */
+  height: fit-content;
+  background-color: #333333c0;
+  border-radius: 10px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 10px 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.BtnContainer{
+  width: calc(100% - 10px);
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.ApriArgomento{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15px;
+  width: 100px;
+  background-color: #3D5AFE;
+  padding: 5px;
+  cursor: default;
+  border-radius: 20px;
+  margin-right: 5px;
+  transition: background-color 0.3s ease;
+
+}
+.EliminaArgomento{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15px;
+  width: 100px;
+  background-color: #ff0026;
+  padding: 5px;
+  cursor: default;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+
+}
+.InfoContainer{
+  width: calc(100% - 10px);
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+.UserInfo{
+  display: flex;
+  height: fit-content;
+  margin-left: 0px;
+  margin-right: 0px;
+  align-items: center;
+  padding: 5px;
+  width: calc(100% - 10px);
+  max-width: 600px;
+}
+.DataPubblicazione{
+  height: 30px;
+  font-size: 0.8em;
+  color: rgb(220, 220, 220);
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+  margin-right: 10px;
+  margin: 0;
+  padding: 0px;
+}
+.Title{
+  display: flex;
+  align-items:center;
+  font-size: 1.5em;
+  padding: 0px;
+}
+
+.Contenuto{
+  display: block;
+  margin: 0px;
+  padding: 5px;
+  word-wrap:break-word;
+  font-size: 1em;
+  text-align: justify;
+  white-space: pre-line;
+  width: calc(100% - 10px);
+}
+.ApriArgomento:hover{
+  background-color: #536DFE;
+  cursor: pointer;
+}
+.EliminaArgomento:hover{
+  background-color: #fe5353;
+  cursor: pointer;
+}
+.ArgomentTag{
+  display: flex;
+  color: rgb(220, 220, 220);
+  font-size: 0.9em;
+  margin-right: 5px;
+}
+.ArgomentTag:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+.CreaArgomento{
+  width: calc(50% - 10px);
+  /* max-width: 800px; */
+  height: fit-content;
+  background-color: #333333c0;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  margin-bottom: 20px;
+  backdrop-filter: blur(15px);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.CreaArgomento h1{
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+}
+.TitleContainer{
+  display: flex;
+  height: fit-content;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+.textboxTitle {
+  border: 2px solid transparent;
+  width: 82%;
+  padding: 10px 15px 10px 15px;
+  border-radius: 30px;
+  background-color: #333333c0;
+  color: #fff;
+  outline: none;
+}
+.textboxTitle:focus {
+  border: 2px solid#3D5AFE;
+}
+.TitleContainer h6{
+  display: flex;
+  margin: 0;
+  font-size: 1em;
+  text-align: left;
+  justify-content: left;
+  /* margin-right: 10px; */
+  font-weight: lighter;
+  /* width:18%; */
+}
+.ArgomentoContainer{
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.ArgomentoContainer h6{
+  display: block;
+  width: 100%;
+  margin: 0;
+  font-size: 1em;
+  font-weight: lighter;
+  margin-bottom: 5px;
+}
+.textboxArgoment {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #333333c0;
+  color: #fff;
+  outline: none;
+  font-family: 'Roboto', sans-serif;
+  border: 2px solid transparent;
+}
+.textboxArgoment:focus {
+  border: 2px solid#3D5AFE;
+}
+.InviaArgomento{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  background-color: #3D5AFE;
+  padding: 5px;
+  cursor: default;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+.InviaArgomento:hover{
+  background-color: #536DFE;
+  cursor: pointer;
+}
+.CreaArgomentoBtnContainer{
+  height: fit-content;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  margin-left: 0px;
+  margin-right: 0px;
+  justify-content: flex-end;
+}
+.tagContainer{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  margin-right: 5px;
+  align-items: center;
+  justify-content: space-between;
+}
+.tagContainer h6{
+  display: flex;
+  margin: 0;
+  font-size: 1em;
+  font-weight: lighter;
+  /* margin-right: 5px; */
+  /* width: 35%; */
+}
+.textboxTag{
+  width: 65%;
+  padding: 10px 15px 10px 15px;
+  border-radius: 30px;
+  background-color: #333333c0;
+  color: #fff;
+  outline: none;
+  font-family: 'Roboto', sans-serif;
+  border: 2px solid transparent;
+}
+.textboxTag:focus {
+  border: 2px solid#3D5AFE;
+}
+
+@media (max-width: 800px) {
+
+  .TitleContainer{
+    flex-direction: column;
+  }
+  .TitleContainer h6{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  .CreaArgomento{
+    width: calc(100% - 20px);
+  }
+
+  .CreaArgomentoBtnContainer{
+    flex-direction: column;
+  }
+
+  .tagContainer{
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .tagContainer h6{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  .textboxTitle{
+    width: 100%;
+  }
+  
+  .textboxTag{
+    width: 100%;
+  }
+
+  .InviaArgomento{
+    margin-top: 10px;
+    width: calc(100% - 10px);
+  }
+
+  .ArgomentInfo{
+    width: calc(100% - 10px);
+  }
+  .ArgomentContainer{
+    width: calc(100% - 10px);
+  }
+}
