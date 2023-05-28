@@ -1,7 +1,5 @@
-
 function validazione(event){
     
-    // Verifica se tutti i campi sono riempiti
     if(t_username.value.length == 0){
         t_username.placeholder="Inserisci username";
         t_username.classList.add('redBorder');
@@ -18,7 +16,7 @@ function validazione(event){
 
     if(t_username.value.length !=0 && t_password.value.length !=0 && login==false){
         const form_data ={ method: 'POST', body: new FormData(form)};
-        fetch("http://localhost/homework1/Convalid_User.php",form_data).then(onResponse).then(onJson);
+        fetch("Convalid_User.php",form_data).then(onResponse).then(onJson);
         event.preventDefault();
     }
         
@@ -82,11 +80,10 @@ function Password_Control(event){
 function ApriRegistrati(event){
     window.open("Registrati.php","_self");
 }
-// Riferimento al form
 const form = document.forms['login'];
 const t_username =form.username;
 const t_password=form.password;
-// Aggiungi listener
+
 form.addEventListener('submit', validazione);
 form.username.addEventListener('keyup',Username_Control);
 form.password.addEventListener('keyup',Password_Control);
