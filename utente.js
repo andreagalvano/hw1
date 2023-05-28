@@ -5,7 +5,6 @@ function onResponseA_Argomento(response){
     return response.json();
 }
 function onJsonA_Argomento(json){
-    console.log(json);
     if(json[0].MSG==="1"){
       location.reload();
     }
@@ -16,7 +15,6 @@ function Apri_Argomento(event){
     window.open("Argomento.php?id_arg="+id_arg+"&titolo="+encodeURI(titolo),"_self");
 }
 function onJson(json){
-    console.log(json);
 
     const ArgomentContainer=document.querySelector('.ArgomentContainer');
     if(json.length>0){
@@ -83,17 +81,15 @@ function onResponseR_Argomento(response){
     return response.json();
 }
 function onJsonR_Argomento(json){
-    console.log(json);
 }
 function Elimina_Argomento(event){
     const id_arg=event.currentTarget.parentNode.parentNode.id;
-    console.log(id_arg);
 
     const fdata=new FormData();
     fdata.append('id_arg',id_arg);
     const form_data={method:'Post',body: fdata};
 
-   fetch("http://localhost/homework1/Database_Requests.php?richiesta=remove_argoment",form_data).then(onResponseR_Argomento).then(onJsonR_Argomento);
+   fetch("Database_Requests.php?richiesta=remove_argoment",form_data).then(onResponseR_Argomento).then(onJsonR_Argomento);
     
     const ArgomentContainer=document.querySelector('.ArgomentContainer');
     const Argomento=event.currentTarget.parentNode.parentNode;
@@ -115,7 +111,6 @@ function Logout(event){
 }
 function Apri_Artista(event){
   const artista=event.currentTarget.textContent.replace("#","");
-  console.log(artista);
   window.open("Artista.php?nome_artista="+encodeURI(artista),"_self");
 }
 function Login(event){
@@ -144,7 +139,7 @@ if(document.body.contains(document.querySelector("#userbtn"))){
     const fdata=new FormData();
     fdata.append('id_user',Username);
     const form_data={method:'Post',body: fdata};
-    fetch("http://localhost/homework1/Database_Requests.php?richiesta=get_user_argoments",form_data).then(onResponse).then(onJson);
+    fetch("Database_Requests.php?richiesta=get_user_argoments",form_data).then(onResponse).then(onJson);
 }
 if(document.body.contains(document.querySelector("#LogInbutton"))){
     const LogInbutton=document.querySelector("#LogInbutton");
@@ -165,7 +160,7 @@ function Invia_Argomento(event){
       fdata.append('data_pubblicazione',datetime);
       fdata.append('tag',tag.value);
       const form_data={method:'Post',body: fdata};
-      fetch("http://localhost/homework1/Database_Requests.php?richiesta=add_argoment",form_data).then(onResponseA_Argomento).then(onJsonA_Argomento);
+      fetch("Database_Requests.php?richiesta=add_argoment",form_data).then(onResponseA_Argomento).then(onJsonA_Argomento);
     }
 
 }
