@@ -29,6 +29,11 @@ if(!isset($_SESSION["username"])){
           <div class="divider"></div>
           <div class="menu-button" id="infobtn"><h4>Info</h4></div>
         </div>
+        <div id="hambMenu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         <div id="right">
         <?php
           if($login==true){
@@ -42,7 +47,19 @@ if(!isset($_SESSION["username"])){
           
         </div>
     </nav>
+    <div id="MenuTendina" class="nonVisible">
+        <div class="MenuTendinaBtn" id="homebtn"> <h4>Home</h4></div>
+        <div class="MenuTendinaBtn" id="infobtn"><h4>Info</h4></div>
+        <?php
 
+          if($login==true){
+            echo "<div class='MenuTendinaBtn' id='userbtn'><h4 id='ID_USER'>".$_SESSION["username"]."</h4></div>";
+            echo "<div class='MenuTendinaBtn' id='logoutbtn'><h4>Logout</h4></div>";
+          }else{
+            echo "<div class='MenuTendinaBtn' id='loginbtn' ><h4>Login</h4></div>";
+          }
+          ?>
+    </div>
 <div class="ParentContainer">
     <div id="InfoContainer">
         <div id="InfoLeft">
