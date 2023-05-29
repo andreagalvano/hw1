@@ -102,10 +102,16 @@ function Elimina_Argomento(event){
     }
 
 }
-const homebtn= document.querySelector('#homebtn');
-const infobtn= document.querySelector('#infobtn');
-homebtn.addEventListener('click',ApriHome);
-infobtn.addEventListener('click',ApriInfo);
+const homebtn= document.querySelectorAll('#homebtn');
+const infobtn= document.querySelectorAll('#infobtn');
+
+for(elemento of homebtn){
+  elemento.addEventListener('click',ApriHome);
+}
+for(elemento of infobtn){
+  elemento.addEventListener('click',ApriInfo);
+}
+
 function Logout(event){
     window.open("logout.php","_self");
 }
@@ -123,16 +129,22 @@ function ApriHome(event){
     window.open("Home.php","_self");
 }
 if(document.body.contains(document.querySelector("#userbtn"))){
-  const userbtn= document.querySelector('#userbtn');
-  userbtn.addEventListener('click',function(event){ location.reload();});
+  const userbtn= document.querySelectorAll('#userbtn');
+  for(elemento of userbtn ){
+    elemento.addEventListener('click',function(event){ location.reload();});
+  }
 }
 if(document.body.contains(document.querySelector("#logoutbtn"))){
-  const logoutbtn= document.querySelector('#logoutbtn');
-  logoutbtn.addEventListener('click',Logout);
+  const logoutbtn= document.querySelectorAll('#logoutbtn');
+  for(elemento of logoutbtn){
+    elemento.addEventListener('click',Logout);
+  }
 }
 if(document.body.contains(document.querySelector("#loginbtn"))){
-  const loginbtn= document.querySelector('#loginbtn');
-  loginbtn.addEventListener('click',Login);
+  const loginbtn= document.querySelectorAll('#loginbtn');
+  for(elemento of loginbtn ){
+    elemento.addEventListener('click',Login);
+  }
 }
 if(document.body.contains(document.querySelector("#userbtn"))){
     Username=document.querySelector("#ID_USER").textContent;
@@ -180,4 +192,19 @@ function CercaArgomento(event){
     const searchBox = document.querySelector('#searchBox');
     searchBox.addEventListener("keydown", CercaArgomento);
   }
+
+  function apriMenu(event){
+    const menuTendina=document.querySelector('#MenuTendina');
+    if(menuTendina.dataset.mostra==="1"){
+        menuTendina.classList.add('nonVisible');
+        menuTendina.classList.remove('visible');
+        menuTendina.dataset.mostra="0";
+    }else{
+        menuTendina.classList.add('visible');
+        menuTendina.classList.remove('nonVisible');
+        menuTendina.dataset.mostra="1";
+    }
+  }
+  const hambMenu=document.querySelector('#hambMenu');
+  hambMenu.addEventListener('click',apriMenu);
   
