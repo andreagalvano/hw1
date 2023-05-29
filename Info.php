@@ -87,9 +87,9 @@ if(!isset($_SESSION["username"])){
         </div>
         <div id="InfoRight">
           <h1>Benvenuto su OurMusic!</h1>
-          <p>In questo forum parleremo di musica!
-          Iscriviti, Crea argomenti nuovi itinerenti al tuo gruppo preferito o su qualsiasi altro cantante.
-          Grazie all'uso delle Api di Spotify puoi vedere tutte le informazioni dell'artista andando a cliccare sul tag presente su ogni argomento.
+          <p>In questo forum parleremo di musica!<br>
+          Iscriviti, crea nuovi argomenti inerenti al tuo gruppo preferito o su qualsiasi altro cantante.<br>
+          Grazie all'uso dell'API di Spotify puoi vedere tutte le informazioni dell'artista andando a cliccare sul #TAG presente su ogni argomento.<br>
           Spero di poterci prendere 30!</p>
         </div>
     </div>
