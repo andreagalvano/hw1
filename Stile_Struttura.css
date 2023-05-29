@@ -167,23 +167,95 @@ body {
   }
 
 @media (max-width: 800px) {
+  #right{
+    display: none;
+}
   #menu h1{
-    margin: 0;
-    font-size: 1.2em;
-    margin-right: 5px;
+  margin: 0;
+  font-size: 1.5em;
+  margin-right: 5px;
   }
   .menu-button {
-    padding: 5px;
+  padding: 5px;
   }
 
   .textbox {
-    width: 150px;
+  width: 100%;
   }
   .textbox:focus{
-    width: 150px;
+  width: 100%;
+  }
+  nav #hambMenu {
+  margin-right: 10px;
+  display: block;
+  }
+  nav .menu-button{
+  display: none;
+  }
+  nav .divider{
+  display: none;
+  }
+  nav #left{
+  width: 100%;
   }
 
-  .menu-button h4{
-    font-size: 0.8em;
-  }
+}
+
+#hambMenu{
+  display: none;
+  transition: background-color 0.3 ease;
+  padding: 5px;
+  border-radius: 5px;
+} 
+#hambMenu div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  
+}
+#hambMenu:active{
+  background-color: #3D5AFE;
+}
+#MenuTendina{
+  top: 70px;
+  width: 100%;
+  background-color: #222;
+  height: calc(100vh - 70px);
+  z-index: 1;
+}
+#MenuTendina.nonVisible{
+  display: none;
+}
+#MenuTendina.Visible{
+  display:flex;
+  position:absolute;
+  flex-direction: column;
+}
+
+.MenuTendinaBtn{
+  width: 100%;
+  margin-bottom: 5px;
+  justify-items: center;
+  text-align: center;
+  border-bottom: 1px solid white;
+}
+.MenuTendinaBtn h4{
+  margin: 0;
+  padding: 10px;
+}
+.MenuTendinaBtn{
+  width: 100%;
+  margin-bottom: 5px;
+  justify-items: center;
+  text-align: center;
+  border-bottom: 1px solid white;
+  transition: background-color 0.3 ease;
+  font-size: 1.5em;
+}
+
+.MenuTendinaBtn:hover {
+  background-color: white;
+  color: black;
+  border-bottom: 1px solid #3D5AFE;
 }
