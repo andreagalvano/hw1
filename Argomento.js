@@ -352,8 +352,10 @@ function Apri_User(event){
     window.open("utente.php","_self");
   }
 if(document.body.contains(document.querySelector("#userbtn"))){
-    const userbtn=document.querySelector("#userbtn");
-    userbtn.addEventListener('click',Apri_User);
+    const userbtn=document.querySelectorAll("#userbtn");
+    for(elemento of userbtn){
+        elemento.addEventListener('click',Apri_User);
+    }
     Username=document.querySelector("#ID_USER").textContent;
     const queryString = window.location.search; //ottengo l'url della pagina
     const urlParams = new URLSearchParams(queryString); //ottengo tutti i parametri
@@ -364,17 +366,27 @@ if(document.body.contains(document.querySelector("#userbtn"))){
     fetch("Database_Requests.php?richiesta=get_argoment",form_data).then(onResponse).then(onJson);
 }
 if(document.body.contains(document.querySelector("#logoutbtn"))){
-    const logoutbtn= document.querySelector('#logoutbtn');
-    logoutbtn.addEventListener('click',Logout);
+    const logoutbtn= document.querySelectorAll('#logoutbtn');
+    for(elemento of logoutbtn){
+        elemento.addEventListener('click',Logout);
+    }
 }
 if(document.body.contains(document.querySelector("#loginbtn"))){
-    const logintbtn= document.querySelector('#loginbtn');
-    logintbtn.addEventListener('click',Login);
+    const loginbtn= document.querySelectorAll('#loginbtn');
+    for(elemento of loginbtn){
+        elemento.addEventListener('click',Login);
+    }
 }
-const homebtn= document.querySelector('#homebtn');
-const infobtn= document.querySelector('#infobtn');
-homebtn.addEventListener('click',ApriHome);
-infobtn.addEventListener('click',ApriInfo);
+const homebtn= document.querySelectorAll('#homebtn');
+const infobtn= document.querySelectorAll('#infobtn');
+
+for(elemento of homebtn){
+    elemento.addEventListener('click',ApriHome);
+}
+  for(elemento of infobtn){
+    elemento.addEventListener('click',ApriInfo);
+}
+
 function ApriInfo(event){
     window.open("Info.php","_self");
 }
@@ -406,4 +418,18 @@ if(document.body.contains(document.querySelector("#LogInbutton"))){
 }
 function Login(event){
     window.open("login.php","_self");
-}  
+}
+function apriMenu(event){
+    const menuTendina=document.querySelector('#MenuTendina');
+    if(menuTendina.dataset.mostra==="1"){
+        menuTendina.classList.add('nonVisible');
+        menuTendina.classList.remove('visible');
+        menuTendina.dataset.mostra="0";
+    }else{
+        menuTendina.classList.add('visible');
+        menuTendina.classList.remove('nonVisible');
+        menuTendina.dataset.mostra="1";
+    }
+  }
+  const hambMenu=document.querySelector('#hambMenu');
+  hambMenu.addEventListener('click',apriMenu);
