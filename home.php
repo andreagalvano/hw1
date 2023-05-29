@@ -65,7 +65,7 @@ if(!isset($_SESSION["username"])){
       if($login==false){
         echo "<div class='Argomento'>";
         echo "<div class='Benvenuto'>Benvenuto in questo Forum!</div>";
-        echo "<p class='pBenvenuto'>In questo forum parleremo di musica!<br>Iscriviti, Crea argomenti nuovi itinerenti al tuo gruppo preferito o su qualsiasi altro cantante.<br>Grazie all'uso delle Api di Spotify puoi vedere tutte le informazioni dell'artista andando a cliccare sul tag presente su ogni argomento.<br>Spero di poterci prendere 30!</p>";
+        echo "<p class='pBenvenuto'>In questo forum parleremo di musica!<br>Iscriviti, crea nuovi argomenti inerenti al tuo gruppo preferito o su qualsiasi altro cantante.<br>Grazie all'uso dell'API di Spotify puoi vedere tutte le informazioni dell'artista andando a cliccare sul #TAG presente su ogni argomento.<br>Spero di poterci prendere 30!</p>";
         echo "<div id='formDivider'></div>";
         echo "<div id='LogInContainer'>";
         echo "<em>Sei già iscritto? Accedi subito!</em>";
