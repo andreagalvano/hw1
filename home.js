@@ -1,14 +1,19 @@
 
-const homebtn= document.querySelector('#homebtn');
-const infobtn= document.querySelector('#infobtn');
+const homebtn= document.querySelectorAll('#homebtn');
+const infobtn= document.querySelectorAll('#infobtn');
 
 if(document.body.contains(document.querySelector("#logoutbtn"))){
-  const logoutbtn= document.querySelector('#logoutbtn');
-  logoutbtn.addEventListener('click',Logout);
+  const logoutbtn= document.querySelectorAll('#logoutbtn');
+  for(elemento of logoutbtn ){
+    elemento.addEventListener('click',Logout);
+  }
+  
 }
 if(document.body.contains(document.querySelector("#loginbtn"))){
-  const loginbtn= document.querySelector('#loginbtn');
-  loginbtn.addEventListener('click',Login);
+  const loginbtn= document.querySelectorAll('#loginbtn');
+  for(elemento of loginbtn ){
+    elemento.addEventListener('click',Login);
+  }
 }
 
 function Apri_Artista(event){
@@ -16,8 +21,13 @@ function Apri_Artista(event){
   window.open("Artista.php?nome_artista="+encodeURI(artista),"_self");
 }
 
-homebtn.addEventListener('click',function(event){ location.reload();});
-infobtn.addEventListener('click',ApriInfo);
+for(elemento of homebtn){
+  elemento.addEventListener('click',function(event){ location.reload();});
+}
+for(elemento of infobtn){
+  elemento.addEventListener('click',ApriInfo);
+}
+
 
 function Logout(event){
   window.open("logout.php","_self");
@@ -250,8 +260,10 @@ function Invia_Argomento(event){
 }
 let Username="";
 if(document.body.contains(document.querySelector("#userbtn"))){
-  const userbtn=document.querySelector("#userbtn");
-  userbtn.addEventListener('click',Apri_User);
+  const userbtn=document.querySelectorAll("#userbtn");
+  for(elemento of userbtn){
+    elemento.addEventListener('click',Apri_User);
+  }
   Username=document.querySelector("#ID_USER").textContent;
   fetch("Database_Requests.php?richiesta=get_argoments").then(onResponse).then(onJson);
   const InviaArgomento=document.querySelector('.InviaArgomento');
@@ -275,3 +287,17 @@ if(document.body.contains(document.querySelector("#searchBox"))){
   searchBox.addEventListener("keydown", CercaArgomento);
 }
 
+function apriMenu(event){
+  const menuTendina=document.querySelector('#MenuTendina');
+  if(menuTendina.dataset.mostra==="1"){
+      menuTendina.classList.add('nonVisible');
+      menuTendina.classList.remove('visible');
+      menuTendina.dataset.mostra="0";
+  }else{
+      menuTendina.classList.add('visible');
+      menuTendina.classList.remove('nonVisible');
+      menuTendina.dataset.mostra="1";
+  }
+}
+const hambMenu=document.querySelector('#hambMenu');
+hambMenu.addEventListener('click',apriMenu);
