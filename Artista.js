@@ -1,5 +1,12 @@
-const homebtn= document.querySelector('#homebtn');
-homebtn.addEventListener('click',Apri_Home);
+const homebtn= document.querySelectorAll('#homebtn');
+const infobtn= document.querySelectorAll('#infobtn');
+
+for(elemento of homebtn){
+  elemento.addEventListener('click',Apri_Home);
+}
+for(elemento of infobtn){
+  elemento.addEventListener('click',ApriInfo);
+}
 
 function convertiNumero(numero) {
   const numeroStringa = numero.toString();
@@ -18,7 +25,6 @@ function convertiNumero(numero) {
   return risultato;
 }
 
-const infobtn= document.querySelector('#infobtn');
 function onJsonR_Like(json){
 }
 function onResponseR_Like(response){
@@ -65,8 +71,10 @@ function MettiLike(event){
   }
 }
 if(document.body.contains(document.querySelector("#userbtn"))){
-  const userbtn= document.querySelector('#userbtn');
-  userbtn.addEventListener('click',Apri_User);
+  const userbtn= document.querySelectorAll('#userbtn');
+  for(elemento of userbtn){
+    elemento.addEventListener('click',Apri_User);
+  }
   Username=document.querySelector("#ID_USER").textContent;
   const queryString = window.location.search; //ottengo l'url della pagina
   const urlParams = new URLSearchParams(queryString); //ottengo tutti i parametri
@@ -76,15 +84,18 @@ if(document.body.contains(document.querySelector("#userbtn"))){
   }  
 }
 if(document.body.contains(document.querySelector("#logoutbtn"))){
-  const logoutbtn= document.querySelector('#logoutbtn');
-  logoutbtn.addEventListener('click',Logout);
+  const logoutbtn= document.querySelectorAll('#logoutbtn');
+  for(elemento of logoutbtn){
+    elemento.addEventListener('click',Logout);
+  }
 }
 if(document.body.contains(document.querySelector("#loginbtn"))){
-  const loginbtn= document.querySelector('#loginbtn');
-  loginbtn.addEventListener('click',Login);
+  const loginbtn= document.querySelectorAll('#loginbtn');
+  for(elemento of loginbtn){
+    elemento.addEventListener('click',Login);
+  }
+  
 }
-infobtn.addEventListener('click',ApriInfo);
-
 function Logout(event){
   window.open("logout.php","_self");
 }
@@ -357,3 +368,17 @@ if(document.body.contains(document.querySelector("#searchBox"))){
   const searchBox = document.querySelector('#searchBox');
   searchBox.addEventListener("keydown", CercaArgomento);
 }
+function apriMenu(event){
+  const menuTendina=document.querySelector('#MenuTendina');
+  if(menuTendina.dataset.mostra==="1"){
+      menuTendina.classList.add('nonVisible');
+      menuTendina.classList.remove('visible');
+      menuTendina.dataset.mostra="0";
+  }else{
+      menuTendina.classList.add('visible');
+      menuTendina.classList.remove('nonVisible');
+      menuTendina.dataset.mostra="1";
+  }
+}
+const hambMenu=document.querySelector('#hambMenu');
+hambMenu.addEventListener('click',apriMenu);
